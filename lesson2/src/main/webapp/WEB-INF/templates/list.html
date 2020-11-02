@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+
+<h1>All products</h1>
+<a href="new">Add new product</a>
+<p th:each="product : ${products}"><a th:text="${product.title}" th:href="${product.id}"></a></p>
+
+
+</body>
+</html>
