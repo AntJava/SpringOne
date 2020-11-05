@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+
+<h1><a href="/app">All products</a></h1>
+<p><a href="new">Add new product</a></p>
+<p><a href="newTest">Add 20 new random products</a></p>
+<p><a href="price?priceFrom=5&priceTo=12">Order by price between 5 and 12</a></p>
+
+<div class="container">
+    <!-- Table to show the data fetched from the db. -->
+    <table class="table" align="left">
+        <thead>
+        <tr>
+            <th>Id</th><th>Title</th><th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text=${product.id}>Id</td><td><a th:text="${product.title}" th:href="${product.id}"></a></td><td th:text=${product.price}>price</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
