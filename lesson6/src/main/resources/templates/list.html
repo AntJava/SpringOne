@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+
+<div th:insert="~{menu :: #nav-menu}"></div>
+
+<form  th:action="@{/page}" method="get">
+    <table border="1">
+        <tr>
+            <td>Start price </td>
+            <td><input th:name="priceFrom" th:value="${startPrice}" type="number"/></td>
+        </tr>
+        <tr>
+            <td>End price </td>
+            <td><input th:name="priceTo" th:value="${endPrice}" type="number"/></td>
+        </tr>
+    </table>
+    <button type="submit">Filter</button>
+</form>
+<div>
+    <div>
+    <!-- Table to show the data fetched from the db. -->
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th><th>Title</th><th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text=${product.id}>Id</td><td><a th:text="${product.title}" th:href="${'product/' + product.id}"></a></td><td th:text=${product.price}>price</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <div>
+    <table border="1">
+        <thead>
+        <tr>
+            <th th:if="${products.totalPages > 0}"
+                th:each="pageNumber : ${pageNumbers}"><a th:href="@{/page(size=${products.size}, page=${pageNumber},
+                priceFrom=${startPrice}, priceTo=${endPrice})}" th:text=${pageNumber}></a></th>
+        </tr>
+    </table>
+    </div>
+</div>
+</body>
+</html>
