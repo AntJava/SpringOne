@@ -51,7 +51,7 @@ public class ProductController {
         return "list";
     }
 
-    //http://localhost:8080/app/1 - GET
+    //http://localhost:8080/app/product/1 - GET
     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
     public String getById(Model model,@PathVariable("id") Integer id){
         Product byId = productService.findById(id);
@@ -60,8 +60,17 @@ public class ProductController {
         return "product";
     }
 
-    //http://localhost:8080/app/1 - POST
-    @RequestMapping(value = "/product/{id}", method = RequestMethod.POST)
+    //http://localhost:8080/app/1/update - GET
+    @RequestMapping(value = "/product-update/{id}", method = RequestMethod.GET)
+    public String updateById(Model model,@PathVariable("id") Integer id){
+        Product byId = productService.findById(id);
+        model.addAttribute("product",
+                byId == null ? new Product(): byId);
+        return "product-update";
+    }
+
+    //http://localhost:8080/app/1/update - POST
+    @RequestMapping(value = "/product-update/{id}", method = RequestMethod.POST)
     public String updateProduct(Product product){
         productService.saveAndSet(product);
         return "redirect:/product/{id}";
@@ -82,7 +91,7 @@ public class ProductController {
     }
 
     //http://localhost:8080/app/new - GET
-    @GetMapping("/newTest")
+    @GetMapping("/new/newTest")
     public String addNewTestProduct(){
         for (int i = 0; i < 20; i++) {
             Product product = new Product();

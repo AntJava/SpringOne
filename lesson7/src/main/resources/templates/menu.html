@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -9,9 +9,12 @@
 <div id="nav-menu" align="center">
     <table>
         <tr>
-            <td>Menu -> </td>
-            <td><a th:href="@{/}">All products</a></td>
-            <td><a th:href="@{/new}">New product</a></td>
+            <td>Menu -> <a sec:authentication="name"></a></td>
+            <td><a th:href="@{/}">Main</a></td>
+            <td sec:authorize="hasAnyAuthority('ADMIN', 'MANAGER')"><a th:href="@{/new}">New product</a></td>
+            <td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/users}">Users</a></td>
+            <td sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></td>
+            <td sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></td>
         </tr>
     </table>
 </div>

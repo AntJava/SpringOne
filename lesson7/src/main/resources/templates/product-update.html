@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Product update</title>
+</head>
+<body>
+<div th:insert="~{menu :: #nav-menu}"></div>
+<form  th:object="${product}" method="post">
+    <table border="1">
+        <tr>
+            <td>New title </td>
+            <td><input type="text" th:field="*{title}"/> </td>
+        </tr>
+        <tr>
+            <td>New price </td>
+            <td><input th:field="*{price}" type="number"/></td>
+        </tr>
+    </table>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

@@ -32,7 +32,9 @@
         </thead>
         <tbody>
             <tr th:each="product : ${products}">
-                <td th:text=${product.id}>Id</td><td><a th:text="${product.title}" th:href="${'product/' + product.id}"></a></td><td th:text=${product.price}>price</td>
+                <td th:text=${product.id}>Id</td>
+                <td><a th:text="${product.title}" th:href="${'product/' + product.id}"></a></td>
+                <td th:text=${product.price}>price</td>
             </tr>
         </tbody>
     </table>
