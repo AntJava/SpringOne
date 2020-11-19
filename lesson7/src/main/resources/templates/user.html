@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<div th:insert="~{menu :: #nav-menu}"></div>
+<h1>User form</h1>
+
+<form method="post">
+    <table border="1">
+
+        <tr>
+            <td>Id</td>
+            <td><input type="text" disabled th:field="*{user.id}"></td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" disabled th:field="*{user.name}"></td>
+        </tr>
+        <tr>
+            <td>Role</td>
+            <td><select th:field="*{user.role}">
+                <option th:each="rol : ${roles}" th:value="${rol}" th:text=${rol} th:selected="${rol==user.role}"></option>
+                </select>
+            </td>
+        </tr>
+
+    </table>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>
